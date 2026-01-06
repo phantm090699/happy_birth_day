@@ -4,58 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday My Love 💖</title>
+
 <style>
 body{
-  margin:0; height:100vh; overflow:hidden;
-  display:flex; justify-content:center; align-items:center;
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   background:linear-gradient(135deg,#ff9a9e,#fad0c4);
   font-family:Segoe UI, sans-serif;
 }
-.page{display:none; text-align:center; color:white;}
-.page.active{display:block; animation:fade 1s}
+
+.page{
+  display:none;
+  text-align:center;
+  color:white;
+}
+
+.page.active{
+  display:block;
+  animation:fade 1s;
+}
+
 button{
-  padding:15px 35px; font-size:1.1rem; cursor:pointer;
-  border:none; border-radius:40px;
-  background:#ff4b5c; color:white;
+  padding:15px 35px;
+  font-size:1.1rem;
+  cursor:pointer;
+  border:none;
+  border-radius:40px;
+  background:#ff4b5c;
+  color:white;
 }
-.count{font-size:6rem; font-weight:bold}
+
+.count{
+  font-size:6rem;
+  font-weight:bold;
+}
+
 .card{
-  background:white; color:#333; padding:40px 60px;
-  border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,.2)
+  background:white;
+  color:#333;
+  padding:40px 50px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
+  max-width:420px;
 }
-.card h1{color:#ff4b5c}
-.love{color:#ff4b5c; font-weight:bold}
 
-.confetti{position:absolute; top:-10px; width:10px; height:10px; animation:fall linear infinite}
-.heart{position:absolute; animation:floatUp 3s linear forwards}
+.card h1{
+  color:#ff4b5c;
+}
 
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
-@keyframes floatUp{from{opacity:1}to{transform:translateY(-300px);opacity:0}}
+.love{
+  color:#ff4b5c;
+  font-weight:bold;
+}
+
+/* MAIN PHOTO */
+.photo-main{
+  width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:50%;
+  border:5px solid #ff4b5c;
+  box-shadow:0 10px 30px rgba(255,75,92,.5);
+  margin:20px auto;
+}
+
+/* GALLERY */
+.gallery{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.gallery img{
+  width:120px;
+  height:160px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  transition:.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.08);
+}
+
+/* EFFECTS */
+.confetti{
+  position:absolute;
+  top:-10px;
+  width:10px;
+  height:10px;
+  animation:fall linear infinite;
+}
+
+.heart{
+  position:absolute;
+  animation:floatUp 3s linear forwards;
+}
+
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
+@keyframes floatUp{
+  from{opacity:1}
+  to{transform:translateY(-300px);opacity:0}
+}
 </style>
 </head>
+
 <body>
 
+<!-- FRONT PAGE -->
 <div class="page active" id="front">
   <h1>💖 Hey My Love 💖</h1>
   <p>Today is the birthday of the most special girl 💕</p>
   <button onclick="startShow()">Let's celebrate your birthday my love 🎂</button>
 </div>
 
+<!-- COUNTDOWN -->
 <div class="page" id="countdown">
   <div class="count" id="num">3</div>
 </div>
 
+<!-- BLAST -->
 <div class="page" id="blast">
   <div class="count">🎉 BOOM 🎉</div>
 </div>
 
+<!-- BIRTHDAY PAGE -->
 <div class="page" id="birthday">
   <div class="card">
+
     <h1>🎂 Happy Birthday My Love 🎂</h1>
+
+    <!-- MAIN IMAGE -->
+    <img src="images/her1.jpg" class="photo-main" alt="My Love">
+
     <p>Your smile is my favorite place 💖</p>
     <p class="love">I love you more than words can ever say 💗</p>
     <p>May your life be filled with happiness, love and beautiful dreams ✨</p>
+
+    <!-- IMAGE GALLERY -->
+    <div class="gallery">
+      <img src="images/her2.jpg" alt="">
+      <img src="images/her3.jpg" alt="">
+      <img src="images/couple.jpg" alt="">
+    </div>
+
   </div>
 </div>
 
@@ -67,11 +174,13 @@ function show(id){
 
 function startShow(){
   show('countdown');
-  let n=3;
-  const el=document.getElementById('num');
-  const timer=setInterval(()=>{
-    n--; el.textContent=n;
-    if(n===0){
+  let n = 3;
+  const el = document.getElementById('num');
+
+  const timer = setInterval(()=>{
+    n--;
+    el.textContent = n;
+    if(n === 0){
       clearInterval(timer);
       show('blast');
       blast();
@@ -88,11 +197,12 @@ function blast(){
 }
 
 function confetti(){
-  const c=document.createElement('div');
-  c.className='confetti';
-  c.style.background=['#ff4b5c','#ffd93d','#6bcBef','#6BCF63'][Math.floor(Math.random()*4)];
-  c.style.left=Math.random()*innerWidth+'px';
-  c.style.animationDuration=Math.random()*3+2+'s';
+  const c = document.createElement('div');
+  c.className = 'confetti';
+  c.style.background = ['#ff4b5c','#ffd93d','#6bcBef','#6BCF63']
+    [Math.floor(Math.random()*4)];
+  c.style.left = Math.random()*innerWidth + 'px';
+  c.style.animationDuration = Math.random()*3 + 2 + 's';
   document.body.appendChild(c);
   setTimeout(()=>c.remove(),5000);
 }
@@ -100,17 +210,18 @@ function confetti(){
 let heartTimer;
 function startHearts(){
   if(heartTimer) return;
-  heartTimer=setInterval(()=>{
-    const h=document.createElement('div');
-    h.className='heart';
-    h.textContent='💖';
-    h.style.left=Math.random()*innerWidth+'px';
-    h.style.top='70%';
-    h.style.fontSize=Math.random()*20+20+'px';
+  heartTimer = setInterval(()=>{
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = '💖';
+    h.style.left = Math.random()*innerWidth + 'px';
+    h.style.top = '70%';
+    h.style.fontSize = Math.random()*20 + 20 + 'px';
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),3000);
   },250);
 }
 </script>
+
 </body>
 </html>
